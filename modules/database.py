@@ -13,7 +13,6 @@ def cargar_datos_mongodb(tokenizador, modelo):
     """Carga los datos desde MongoDB y genera las representaciones de las preguntas."""
     coleccion = conectar_mongodb()
     datos = list(coleccion.find({}))  # Cargar todos los documentos de la colección
-    print(datos)
     # Para cada documento, genera las representaciones de las preguntas
     for intento in datos:
         intento["pregunta_representaciones"] = []

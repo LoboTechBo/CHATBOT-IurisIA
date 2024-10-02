@@ -27,7 +27,7 @@ def principal():
         mensaje_usuario_html = f'<div class="d-flex justify-content-end mb-4"><div class="msg_cotainer_send">{mensaje_usuario}</div></div>'
         respuesta_bot_html = f'<div class="d-flex justify-content-start mb-4"><div class="msg_cotainer">{respuesta}</div></div>'
         
-        return jsonify({"mensaje_usuario": mensaje_usuario_html, "respuesta_bot": respuesta_bot_html})
+        return jsonify({"mensaje_usuario": mensaje_usuario_html, "respuesta_bot": respuesta_bot_html, "respuesta_hablada": respuesta})
 
 if __name__ == "__main__":
     app.run()
