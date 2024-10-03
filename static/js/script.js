@@ -1,3 +1,14 @@
+// Función modal
+const btnCalificar = document.querySelector("#eval");
+const btnCerrar = document.querySelector("#cerrar-modal");
+const modal = document.querySelector("#modal-likert");
+
+btnCalificar.addEventListener("click",()=>{
+    modal.showModal();
+})
+btnCerrar.addEventListener("click",()=>{
+    modal.close();
+})
 // Funcion para la voz del bot
 function speakBotResponse(text) {
     // Verifica si el navegador soporta la síntesis de voz
@@ -141,3 +152,4 @@ $(document).ready(function() {
     // Inicializar el estado del botón en "Micrófono"
     updateButtonState();
 });
+
