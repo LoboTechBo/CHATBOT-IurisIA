@@ -152,4 +152,37 @@ $(document).ready(function() {
     // Inicializar el estado del botón en "Micrófono"
     updateButtonState();
 });
+document.getElementById('ratingForm').addEventListener('submit', function(event) {
+    var inputField = document.getElementById('name-user');
+    
+    // Si el input está vacío, asignar el valor del placeholder
+    if (inputField.value.trim() === '') {
+        inputField.value = "Anónimo";
+    }
+});
+//Código formulario enviar stars
+$("form[name=ratingForm]").submit(function(e){
+    var $form = $(this);
+    var $error = $form.find(".error");
+    var data = $form.serialize();
+    
+    $.ajax({
+        url: "/submit-rating",
+        type: "POST",
+        data: data,
+        dataType: "json",
+        success: function(resp) {
+            window.location.href = "/";
+        },
+        error: function(resp) {
+            if (resp.responseJSON && resp.responseJSON.error) {
+                $error.text(resp.responseJSON.error).removeClass("error--hidden");
+            } else {
+                // Handle generic error (e.g., network error, server error)
+                $error.text("Ocurrió un error al calificar").removeClass("error--hidden");
+            }
+        }
+    });
 
+    e.preventDefault();
+});

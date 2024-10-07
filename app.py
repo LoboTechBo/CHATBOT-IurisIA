@@ -2,7 +2,8 @@
 from flask import Flask, render_template, request, jsonify
 from modules.modelo import cargar_modelo
 from modules.representacion import buscar_respuesta
-from modules.database import cargar_datos_mongodb
+from modules.database import cargar_datos_mongodb, cargar_calificaciones
+from bson import ObjectId
 
 # Carga del modelo y el tokenizador
 modelo_beto = "dccuchile/bert-base-spanish-wwm-cased"
@@ -29,5 +30,30 @@ def principal():
         
         return jsonify({"mensaje_usuario": mensaje_usuario_html, "respuesta_bot": respuesta_bot_html, "respuesta_hablada": respuesta})
 
+#Función calificaciones
+
+@app.route('/submit-rating', methods=['POST'])
+def submit_rating():
+    # Crea un nuevo ObjectId para este documento
+    new_id = ObjectId()
+    calificaciones = cargar_calificaciones()
+    # Prepara el documento para insertar
+    rating_doc = {
+        "_id": new_id,
+        "nombre": request.form.get('name'),
+        "puntuacion": int(request.form.get('star_rating')),
+        "comentario": request.form.get('comentario')
+    }
+    
+    # Inserta el documento en la colección
+    result = calificaciones.insert_one(rating_doc)
+    
+    if result.inserted_id:
+        return jsonify({"message": "Calificación guardada exitosamente", "id": str(new_id)}), 200
+    else:
+        return jsonify({"message": "Error al guardar la calificación"}), 500
+
+if __name__ == '__main__':
+    app.run(debug=True)
 if __name__ == "__main__":
     app.run()
