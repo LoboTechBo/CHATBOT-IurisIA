@@ -26,3 +26,7 @@ def cargar_datos_mongodb(tokenizador, modelo):
 def cargar_calificaciones():
     coleccion_cal = base_datos["Calificaciones"]
     return coleccion_cal
+
+def cargar_reportes():
+    coleccion_rep = base_datos["Reportes"]
+    return coleccion_rep

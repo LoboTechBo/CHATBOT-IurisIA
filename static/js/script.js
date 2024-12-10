@@ -1,14 +1,35 @@
 // Función modal
 const btnCalificar = document.querySelector("#eval");
+const btnNoQuest = document.querySelector("#no-quest");
+const descriptions = {
+    1: "Nada útil",
+    2: "Poco útil",
+    3: "Regularmente útil",
+    4: "Útil",
+    5: "Muy útil"
+};
 const btnCerrar = document.querySelector("#cerrar-modal");
 const modal = document.querySelector("#modal-likert");
+const modalNQA = document.querySelector("#modal-nqa");
 
+//Jaja pense que era # como comentario
+//Boton Pregunta no atendida
+btnNoQuest.addEventListener("click",()=>{
+    modalNQA.showModal();
+})
+btnCerrar.addEventListener("click",()=>{
+    e.preventDefault();
+    modalNQA.close();
+})
+//Botón Calificar
 btnCalificar.addEventListener("click",()=>{
     modal.showModal();
 })
 btnCerrar.addEventListener("click",()=>{
+    e.preventDefault();
     modal.close();
 })
+
 // Funcion para la voz del bot
 function speakBotResponse(text) {
     // Verifica si el navegador soporta la síntesis de voz
@@ -113,7 +134,9 @@ $(document).ready(function() {
                 if (botResponseCount >= 3) {
                     $("#eval").prop('disabled', false);
                 }
-
+                if (botResponseCount >= 1) {
+                    $("#no-quest").prop('disabled', false);
+                }
                 updateButtonState(); // Actualiza el estado del botón
             }
         });
@@ -168,6 +191,42 @@ $("form[name=ratingForm]").submit(function(e){
     
     $.ajax({
         url: "/submit-rating",
+        type: "POST",
+        data: data,
+        dataType: "json",
+        success: function(resp) {
+            window.location.href = "/";
+        },
+        error: function(resp) {
+            if (resp.responseJSON && resp.responseJSON.error) {
+                $error.text(resp.responseJSON.error).removeClass("error--hidden");
+            } else {
+                // Handle generic error (e.g., network error, server error)
+                $error.text("Ocurrió un error al calificar").removeClass("error--hidden");
+            }
+        }
+    });
+
+    e.preventDefault();
+});
+//Función letras modal-likert
+const descriptionElement = document.getElementById('rating-description');
+function updateDescription(event) {
+    const ratingValue = event.target.value; // Obtiene el valor del radio seleccionado
+    descriptionElement.textContent = descriptions[ratingValue];
+}
+document.querySelectorAll('.star').forEach((radio) => {
+    radio.addEventListener('change', updateDescription);
+});
+
+//Formulario de Consultas no atendidas
+$("form[name=answerForm]").submit(function(e){
+    var $form = $(this);
+    var $error = $form.find(".error");
+    var data = $form.serialize();
+    
+    $.ajax({
+        url: "/submit-qna",
         type: "POST",
         data: data,
         dataType: "json",

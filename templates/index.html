@@ -7,10 +7,12 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="/static/css/style.css"/>
+    <link rel="icon" href="/static/images/logo.ico">
 </head>
 <body>
+    <br><br><br>
     <div class="container-fluid h-100">
-        <div class="row justify-content-center h-100">     
+        <div class="row justify-content-center h-100">    
             <div class="col-md-8 col-xl-6 chat">
                 <div class="card">
                     <div class="card-header msg_head">
@@ -41,6 +43,16 @@
                     </div>
                 </div>
                 <br>
+                <div class="button-no_quest">
+                    <button class="button-82-pushable" role="button" id="no-quest" disabled>
+                        <span class="button-82-shadow"></span>
+                        <span class="button-82-edge"></span>
+                        <span class="button-82-front text">
+                          <b>¿Tu consulta jurídica no fue respondida?</b>
+                        </span>
+                    </button>
+                </div>
+                <br>
                 <div class="buttom-eval">
                     <button class="button-82-pushable" role="button" id="eval" disabled>
                         <span class="button-82-shadow"></span>
@@ -54,11 +66,13 @@
         </div>
     </div>
     <form id="ratingForm" name="ratingForm">
-        <dialog id="modal-likert">
+        <dialog id="modal-likert" class="modal-likert">
             <div class="ventana-modal">
-                <h2>Califica</h2>
-                <label for="name-user">Nombre (Opcional):</label>
+                <h2>¡Calificame!</h2>
+                <p>Esta es una encuesta para determinar la utilidad de mis respuestas</p>
+                <label for="name-user">¿Cuál es su nombre? (Opcional)</label>
                 <input type="text" placeholder="Anónimo" id="name-user" name="name">
+                <label for="star-group">¿Que tan útil fueron las respuestas del chatbot?</label>
                 <div class="star-group">
                     <input type="radio" class="star" id="one" value="1" name="star_rating" >
                     <input type="radio" class="star" id="two" value="2" name="star_rating">
@@ -66,7 +80,9 @@
                     <input type="radio" class="star" id="four" value="4" name="star_rating">
                     <input type="radio" class="star" id="five" value="5" name="star_rating">
                 </div>
-                <textarea placeholder="¿Algo más que desees opinar?" name="comentario" id="comment-user"></textarea>
+                <h4 id="rating-description">Regularmente útil</h4>
+                <label for="comment-user">¿Algo más que desee opinar sobre el chatbot?</label>
+                <textarea placeholder="Escriba aquí..." name="comentario" id="comment-user"></textarea>
                 <div class="botones">
                     <button id="enviar">
                         Enviar
@@ -77,6 +93,26 @@
                 </div>
             </div>
         </dialog>
+    </form>
+    <form id="answerForm" name="answerForm">
+        <dialog id="modal-nqa" class="modal-nqa">
+         <div class="ventana-modal">
+            <label for="user_noanswerd">¿Cuál es su nombre?</label>      
+            <input type="text" name="user_noanswerd" id="user_noanswerd">
+            <label for="email">¿Cuál es su correo electrónico?</label>
+            <input type="email" name="email" id="email">
+            <label for="quest_noanswerd">¿Podría formular la pregunta que no fue respondida por el Chatbot?</label>      
+            <input type="text" name="quest_noanswerd" id="quest_noanswerd">
+            <div class="botones">
+            <button id="enviar_qna">
+                Enviar
+            </button>
+            <button id="cerrar-modal">
+                Cerrar
+            </button>
+        </div>
+         </div>
+        </dialog> 
     </form>
     <script src="/static/js/script.js"></script>
 </body>

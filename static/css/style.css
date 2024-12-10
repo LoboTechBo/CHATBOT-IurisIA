@@ -159,7 +159,7 @@ border-radius: 0 0 15px 15px !important;
 	position: relative;
 }
 .msg_cotainer_send{
-    color: #4a4a4a;
+    color: #46297b;
 	margin-top: auto;
 	margin-bottom: auto;
 	margin-right: 10px;
@@ -225,15 +225,15 @@ border-radius: 0 0 15px 15px !important;
 /* Estilo cuando el botón está deshabilitado */
 button:disabled,
 button[disabled] {
-  background-color: #cccccc;
-  color: #666666;
-  border: none;
+  background-color: transparent;
+  color: transparent;
+  border: 90px;
   cursor: not-allowed;
 }
 
 button:disabled .button-82-edge,
 button[disabled] .button-82-edge {
-  border: none;
+  border: 12px;
   background: linear-gradient(
     to left,
     hsl(0deg, 0%, 80%) 0%,
@@ -242,22 +242,38 @@ button[disabled] .button-82-edge {
     hsl(0deg, 0%, 45%) 100%
   );
 }
-
+button:disabled .button-82-pushable,
+button[disabled] .button-82-pushable {
+  border: 12px;
+  background: linear-gradient(
+    to left,
+    hsl(0deg, 0%, 80%) 0%,
+    hsl(0deg, 0%, 60%) 8%,
+    hsl(0deg, 0%, 50%) 92%,
+    hsl(0deg, 0%, 45%) 100%
+  );
+}
 button:disabled .button-82-shadow,
 button[disabled] .button-82-shadow {
-  border: none;
+  border: 12px;
   background: hsl(0deg 0% 0% / 0.15);
 }
 
 button:disabled .button-82-front,
 button[disabled] .button-82-front {
-  border: none;
+  border: 12px;
   background: #cccccc;
   color: #666666;
   transform: translateY(0); /* Evita movimiento innecesario */
 }
 
 /* Estilo cuando el botón está habilitado */
+.button-no_quest {
+  position: relative;
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+}
 .buttom-eval {
   position: relative;
   margin: 10px 0;
@@ -267,7 +283,7 @@ button[disabled] .button-82-front {
 
 .button-82-pushable {
   position: relative;
-  border: none;
+  border: 12px;
   background: transparent;
   padding: 0;
   cursor: pointer;
@@ -314,7 +330,7 @@ button[disabled] .button-82-front {
   border-radius: 12px;
   font-size: 1.1rem;
   color: #863ba7;
-  background: hsl(48, 100%, 51%);
+  background: #f5bd20;
   will-change: transform;
   transform: translateY(-4px);
   transition: transform 600ms cubic-bezier(.3, .7, .4, 1);
@@ -382,18 +398,33 @@ button[disabled] .button-82-front {
     background-color: #a5a5a5; /* Cambia el color al pasar el mouse */
 }
 /* Estilos estrellas */
+.modal-likert {
+  color: #ffff; 
+  border: 90px;
+  background-color: transparent;
+}
+.modal-nqa {
+  color: #ffff; 
+  border: 90px;
+  background-color: transparent;
+}
 .ventana-modal {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 10px solid #46297b;
+    border-radius: 10%;
+    background-color: #ffd93e;
+    color: #46297b;
     max-width: 400px;
     margin: auto;
 }
-
+.ventana-modal h2 {
+  font-weight: bold;
+  background-color: #46297b;
+  color: #ffff;
+}
 .star-group {
     display: flex;
     font-size: clamp(1.5em, 10vw, 3em);
@@ -429,7 +460,7 @@ button[disabled] .button-82-front {
 
 .star:before,
 .star:after {
-    color: #f5bd20;
+    color: #863ba7;
     position: absolute;
 }
 
@@ -541,11 +572,11 @@ textarea {
     border: 1px solid #ddd;
     border-radius: 4px;
 }
-
 .botones .button {
     background-color: #863ba7;
     color: white;
-    border: none;
+    border: 50%;
+    text-decoration: none;
     padding: 10px 15px;
     border-radius: 4px;
     cursor: pointer;
@@ -561,8 +592,8 @@ textarea {
 #enviar {
     background-color: #863ba7;
     margin-right: 10px;
+    border-radius: 12px;
 }
-
 #enviar:hover {
     background-color: #6c2e8c;
 }

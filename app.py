@@ -2,7 +2,7 @@
 from flask import Flask, render_template, request, jsonify
 from modules.modelo import cargar_modelo
 from modules.representacion import buscar_respuesta
-from modules.database import cargar_datos_mongodb, cargar_calificaciones
+from modules.database import cargar_datos_mongodb, cargar_calificaciones, cargar_reportes
 from bson import ObjectId
 
 # Carga del modelo y el tokenizador
@@ -52,7 +52,25 @@ def submit_rating():
         return jsonify({"message": "Calificación guardada exitosamente", "id": str(new_id)}), 200
     else:
         return jsonify({"message": "Error al guardar la calificación"}), 500
-
+#Función de preguntas no respondidas
+@app.route('/submit-qna', methods=['POST'])
+def submit_qna():
+    # Crea un nuevo ObjectId para este documento
+    new_id = ObjectId()
+    reportes = cargar_reportes()
+    report_doc = {
+        "_id": new_id,
+        "nombre": request.form.get('user_noanswerd'),
+        "correo": request.form.get('email'),
+        "consulta": request.form.get('quest_noanswerd')
+    }
+      # Inserta el documento en la colección
+    result = reportes.insert_one(report_doc)
+    
+    if result.inserted_id:
+        return jsonify({"message": "Calificación guardada exitosamente", "id": str(new_id)}), 200
+    else:
+        return jsonify({"message": "Error al guardar la calificación"}), 500
 if __name__ == '__main__':
     app.run(debug=True)
 if __name__ == "__main__":
