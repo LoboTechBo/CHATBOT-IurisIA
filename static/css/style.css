@@ -4,10 +4,16 @@ body,html{
 	margin: 0;
 	font-family: 'Kanit', sans-serif;  
 	background: rgb(44, 47, 59);
-    background: -webkit-linear-gradient(to right, rgb(255, 232, 100), rgb(54, 60, 70), rgb(32, 32, 43));
-	background: linear-gradient(to center, rgb(255, 217, 62), rgb(245, 189, 32), rgb(134,54,169), rgb(70, 41, 123));
 }
-
+.pg-header {
+  align-items: center; 
+  text-align: center;
+}
+.pg-header img{
+  align-items: center;
+  width: 250px;
+  height: 100px; 
+}
 .chat{
 	position: relative;
 	padding-bottom: 20px; /* Reducido de 60px a 20px */
