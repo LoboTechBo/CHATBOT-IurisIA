@@ -1,14 +1,20 @@
 import torch
 import random
 from modules.modelo import generar_representacion
+import re 
 
-def buscar_respuesta(texto_entrada, datos, tokenizador, modelo, umbral=0.70):
+def buscar_respuesta(texto_entrada, datos, tokenizador, modelo, umbral=0.50):
     """Busca la mejor respuesta en función de la similitud del coseno usando PyTorch."""
     
     if datos is None:
         print("Error: 'datos' es None. Verifica cómo se está cargando o pasando.")
         return "Lo siento, ocurrió un error al buscar la respuesta. Por favor, inténtalo de nuevo más tarde."
 
+    # Validar si la entrada es válida (por ejemplo, no está vacía y no contiene solo símbolos)
+    if not texto_entrada.strip() or not re.search(r'\w+', texto_entrada):
+        return "No entiendo tu mensaje. ¿Podrías ser más claro?"
+    if not texto_entrada.strip() or not re.search(r'[a-zA-ZñÑáéíóúÁÉÍÓÚ]', texto_entrada):
+        return "No entiendo tu mensaje. ¿Podrías ser más claro?"
     try:
         # Genera la representación para la entrada del usuario
         representacion_entrada = generar_representacion(texto_entrada, tokenizador, modelo)

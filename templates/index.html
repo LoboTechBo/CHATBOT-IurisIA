@@ -14,37 +14,42 @@
     <div class="pg-header">
         <img src="/static/images/login_head.png" alt="logo">
     </div>
+    
     <div class="container-fluid h-100">
         <div class="row justify-content-center h-100">    
             <div class="col-md-8 col-xl-6 chat">
-                <div class="card">
-                    <div class="card-header msg_head">
-                        <div class="d-flex bd-highlight">
-                            <div class="img_cont">
-                                <img src="/static/images/carmelo.gif" class="rounded-circle user_img">
-                            </div>
-                            <div class="user_info">
-                                <span>Carmelo</span>
-                                <p>Preguntame sobre Derecho del Trabajo o Seguridad Social</p>
+                <div class="box">
+                    <span class="borderLine"></span>
+                    <div class="card">
+                        <div class="card-header msg_head">
+                            <div class="d-flex bd-highlight">
+                                <div class="img_cont">
+                                    <img src="/static/images/carmelo.gif" class="rounded-circle user_img">
+                                </div>
+                                <div class="user_info">
+                                    <span>Carmelo</span>
+                                    <p>Preguntame sobre Derecho del Trabajo o Seguridad Social</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div id="messageFormeight" class="card-body msg_card_body">
-                        <!-- Los mensajes aprecen acá -->
-                    </div>
-                    <div class="card-footer">
-                        <form id="messageArea" class="input-group">
-                            <input type="text" id="text" name="message" placeholder="Dime tu pregunta..." autocomplete="off" class="form-control type_msg" required/>
-                            <div class="input-group-append">
-                                <button type="submit" id="send" class="input-group-text send_btn">
-                                    <i class="fa fa-paper-plane"></i>
-                                    <i class="fas fa-microphone"></i>
-                                    <i class="fas fa-circle-stop"></i>
-                                </button>
-                            </div>
-                        </form>
+                        <div id="messageFormeight" class="card-body msg_card_body">
+                            <!-- Los mensajes aprecen acá -->
+                        </div>
+                        <div class="card-footer">
+                            <form id="messageArea" class="input-group">
+                                <input type="text" id="text" name="message" placeholder="Dime tu pregunta..." autocomplete="off" class="form-control type_msg" required/>
+                                <div class="input-group-append">
+                                    <button type="submit" id="send" class="input-group-text send_btn">
+                                        <i class="fa fa-paper-plane"></i>
+                                        <i class="fas fa-microphone"></i>
+                                        <i class="fas fa-circle-stop"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
+            
                 <br>
                 <div class="button-no_quest">
                     <button class="button-82-pushable" role="button" id="no-quest" disabled>
