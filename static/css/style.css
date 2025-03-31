@@ -421,8 +421,8 @@ button[disabled] .button-82-front {
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    border: 10px solid #46297b;
-    border-radius: 10%;
+    border: 5px solid #46297b;
+    border-radius: 5%;
     background-color: #ffd93e;
     color: #46297b;
     max-width: 400px;
@@ -580,20 +580,23 @@ textarea {
     border: 1px solid #ddd;
     border-radius: 4px;
 }
-.botones .button {
-    background-color: #863ba7;
-    color: white;
-    border: 50%;
-    text-decoration: none;
-    padding: 10px 15px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin: 5px;
-}
-.botones {
+
+.ventana-modal .botones {
 	display: flex;
 	flex-direction: row;
 }
+
+.ventana-modal .botones .button {
+  background-color: #863ba7;
+  color: white;
+  border: 50%;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 5px;
+}
+
 #cerrar-modal {
     background-color: #f44336;
 }

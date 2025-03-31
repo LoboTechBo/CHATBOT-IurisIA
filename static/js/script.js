@@ -29,42 +29,83 @@ btnCerrar.addEventListener("click",()=>{
     e.preventDefault();
     modal.close();
 })
-
-// Funcion para la voz del bot
-function speakBotResponse(text) {
-    // Verifica si el navegador soporta la síntesis de voz
-    if ('speechSynthesis' in window) {
-        // Obtiene las voces disponibles
+//Obtener la voz
+function getSpanishMaleVoice() {
+    return new Promise((resolve) => {
         let voices = window.speechSynthesis.getVoices();
+        
+        if (voices.length !== 0) {
+            let maleVoice = voices.find(voice => 
+                voice.lang.startsWith('es') && 
+                (voice.name.toLowerCase().includes('male') || voice.name.toLowerCase().includes('hombre'))
+            );
 
-        // Filtra para obtener una voz masculina en español (Latinoamérica)
-        let spanishVoice = voices.find(voice => 
-            voice.lang === 'es-MX' || voice.lang === 'es-US' || 
-            (voice.lang.startsWith('es') && voice.name.includes('male'))
-        );
-
-        if (!spanishVoice) {
-            // Si no se encuentra la voz específica, usa una en español por defecto
-            spanishVoice = voices.find(voice => voice.lang.startsWith('es'));
+            resolve(maleVoice || voices.find(voice => voice.lang.startsWith('es')) || null);
+            return;
         }
 
-        // Crea un nuevo objeto SpeechSynthesisUtterance con el texto
-        let utterance = new SpeechSynthesisUtterance(text);
-        utterance.voice = spanishVoice;
-        utterance.lang = 'es-ES'; // Configura el lenguaje a español
-        utterance.rate = 1; // Velocidad normal de la voz
-        utterance.pitch = 1; // Tono de voz normal
+        window.speechSynthesis.onvoiceschanged = () => {
+            voices = window.speechSynthesis.getVoices();
+            let maleVoice = voices.find(voice => 
+                voice.lang.startsWith('es') && 
+                (voice.name.toLowerCase().includes('male') || voice.name.toLowerCase().includes('hombre'))
+            );
 
-        // Habla el texto
-        window.speechSynthesis.speak(utterance);
-    } else {
+            resolve(maleVoice || voices.find(voice => voice.lang.startsWith('es')) || null);
+        };
+    });
+}
+function cleanHTML(text) {
+    // Elimina etiquetas HTML
+    let cleanText = text.replace(/<\/?[^>]+(>|$)/g, " ");
+    return cleanText.trim(); 
+}
+function speakBotResponse(text) {
+    if (!('speechSynthesis' in window)) {
         console.log('La síntesis de voz no es soportada en este navegador.');
+        return;
     }
+
+    let cleanText = cleanHTML(text); // Limpia etiquetas HTML
+    let maxLength = 200; // Evitar cortes por límite del sintetizador
+
+    let parts = cleanText.match(new RegExp('.{1,' + maxLength + '}(\\s|$)', 'g'));
+
+    function speakPart(index) {
+        if (index >= parts.length) return;
+
+        let utterance = new SpeechSynthesisUtterance(parts[index]);
+
+        // Obtener la voz masculina en español
+        let voices = window.speechSynthesis.getVoices();
+        let spanishVoice = voices.find(voice => voice.lang.includes('es') && voice.name.toLowerCase().includes('male'));
+
+        if (!spanishVoice) {
+            spanishVoice = voices.find(voice => voice.lang.includes('es'));
+        }
+
+        utterance.voice = spanishVoice;
+        utterance.lang = 'es-ES';
+        utterance.rate = 0.9; // Reducir la velocidad para que suene más natural
+        utterance.pitch = 0.8; // Hacer la voz un poco más grave
+
+        utterance.onend = () => speakPart(index + 1); // Reproducir la siguiente parte si hay más
+
+        window.speechSynthesis.speak(utterance);
+    }
+
+    speakPart(0); // Comenzar la reproducción
 }
 // Función para desplazar el chat hacia el final
 function scrollToBottom() {
-    var chatContainer = $('#messageFormeight');
-    chatContainer.scrollTop(chatContainer[0].scrollHeight);
+    var chatContainer = $('#messageFormeight'); // Contenedor del chat
+    var lastMessage = chatContainer.find('.msg_cotainer, .msg_cotainer_send').last(); // Último mensaje enviado o recibido
+
+    if (lastMessage.length) {
+        chatContainer.animate({
+            scrollTop: lastMessage.offset().top - chatContainer.offset().top + chatContainer.scrollTop()
+        }, 500); // Desplazamiento suave en 500ms
+    }
 }
 // Función madre
 $(document).ready(function() {

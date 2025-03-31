@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Carmelo</title>
+    <title>Clavel Asesor Laboral</title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="/static/css/style.css"/>
-    <link rel="icon" href="/static/images/logo.ico">
+    <link rel="icon" href="/static/images/logoClavel.ico">
 </head>
 <body>
     <br>
@@ -27,8 +27,8 @@
                                     <img src="/static/images/carmelo.gif" class="rounded-circle user_img">
                                 </div>
                                 <div class="user_info">
-                                    <span>Carmelo</span>
-                                    <p>Preguntame sobre Derecho del Trabajo o Seguridad Social</p>
+                                    <span>Clavel</span>
+                                    <p>Preguntame sobre Derecho del Trabajo</p>
                                 </div>
                             </div>
                         </div>
@@ -104,23 +104,33 @@
     <form id="answerForm" name="answerForm">
         <dialog id="modal-nqa" class="modal-nqa">
          <div class="ventana-modal">
+            <h2>¿Su consulta jurídica no fue respondida?</h2>
+            <p>Llene el formulario para que su duda pueda ser respondida mediante su correo electrónico</p>
             <label for="user_noanswerd">¿Cuál es su nombre?</label>      
-            <input type="text" name="user_noanswerd" id="user_noanswerd">
+            <input type="text" name="user_noanswerd" id="user_noanswerd" required>
             <label for="email">¿Cuál es su correo electrónico?</label>
-            <input type="email" name="email" id="email">
+            <input type="email" name="email" id="email" required>
             <label for="quest_noanswerd">¿Podría formular la pregunta que no fue respondida por el Chatbot?</label>      
-            <input type="text" name="quest_noanswerd" id="quest_noanswerd">
+            <input type="text" name="quest_noanswerd" id="quest_noanswerd" required>
             <div class="botones">
-            <button id="enviar_qna">
-                Enviar
-            </button>
-            <button id="cerrar-modal">
-                Cerrar
-            </button>
-        </div>
+                <button id="enviar_qna" type="submit">
+                    Enviar
+                </button>
+                <button id="cerrar-modal" type="button">
+                    Cerrar
+                </button>
+            </div>
          </div>
         </dialog> 
     </form>
+    <!-- Modal de confirmación -->
+    <dialog id="modal-confirmacion" class="modal-confirmacion">
+        <div class="ventana-modal">
+            <h2>¡Consulta enviada con éxito!</h2>
+            <p>Su pregunta será revisada y recibirá una respuesta en su correo electrónico.</p>
+            <button id="cerrar-confirmacion">Aceptar</button>
+        </div>
+    </dialog>
     <script src="/static/js/script.js"></script>
 </body>
 </html>
