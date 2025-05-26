@@ -5,8 +5,8 @@ from modules.modelo import generar_representacion
 
 """Establece la conexión con MongoDB y devuelve la colección de intentos."""
 
-MONGO_URI = os.environ.get("MONGO_URI")  # Render tomará esta variable del entorno
-cliente = MongoClient(MONGO_URI)  # Modifica esto según tu configuración
+"""MONGO_URI = os.environ.get("MONGO_URI")  # Render tomará esta variable del entorno"""
+cliente = MongoClient("mongodb+srv://GabrielCarmeloMorales:$Carmelo20022611$@cluster0.a1kle.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")  # Modifica esto según tu configuración
 base_datos = cliente["CarmeloChatbotDB"]
 
 def conectar_mongodb():
