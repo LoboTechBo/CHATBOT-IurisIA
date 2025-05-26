@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: chatbot-juridico
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn app:app"
+    pythonVersion: 3.10
+    envVars:
+      - key: MONGO_URI
+        value: "mongodb+srv://GabrielCarmeloMorales:$Carmelo20022611$@cluster0.a1kle.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
