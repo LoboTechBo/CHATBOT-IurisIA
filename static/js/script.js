@@ -9,6 +9,7 @@ const descriptions = {
     5: "Muy útil"
 };
 const btnCerrar = document.querySelector("#cerrar-modal");
+const btnCerrarMQNA = document.querySelector("#cerrar-modalQNA");
 const modal = document.querySelector("#modal-likert");
 const modalNQA = document.querySelector("#modal-nqa");
 
@@ -17,8 +18,7 @@ const modalNQA = document.querySelector("#modal-nqa");
 btnNoQuest.addEventListener("click",()=>{
     modalNQA.showModal();
 })
-btnCerrar.addEventListener("click",()=>{
-    e.preventDefault();
+btnCerrarMQNA.addEventListener("click",()=>{
     modalNQA.close();
 })
 //Botón Calificar
@@ -26,7 +26,6 @@ btnCalificar.addEventListener("click",()=>{
     modal.showModal();
 })
 btnCerrar.addEventListener("click",()=>{
-    e.preventDefault();
     modal.close();
 })
 //Obtener la voz

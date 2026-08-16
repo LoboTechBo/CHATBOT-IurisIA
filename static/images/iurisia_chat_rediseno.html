@@ -1,0 +1,273 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Kanit', 'Segoe UI', sans-serif; }
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap');
+
+.page {
+  background: #07131a;
+  min-height: 680px;
+  padding: 24px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo-area {
+  text-align: center;
+  padding: 4px 0 2px;
+}
+.logo-text {
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  line-height: 1;
+}
+.logo-text .t { color: #0c576b; }
+.logo-text .r { color: #af1724; }
+.logo-sub {
+  font-size: 11px;
+  color: #4a8a9a;
+  letter-spacing: 2px;
+  margin-top: 3px;
+  text-transform: uppercase;
+}
+
+.chat-card {
+  width: 100%;
+  max-width: 560px;
+  background: #0c1f26;
+  border-radius: 16px;
+  border: 1px solid #0c576b44;
+  overflow: hidden;
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: #0a1b22;
+  border-bottom: 1px solid #0c576b33;
+}
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid #0c576b;
+  background: #07131a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.avatar svg { width: 28px; height: 28px; }
+.header-info {}
+.header-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #e8f4f7;
+  letter-spacing: 1px;
+}
+.header-sub {
+  font-size: 12px;
+  color: #4a8a9a;
+  margin-top: 1px;
+}
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background: #0c576b;
+  border-radius: 50%;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.chat-body {
+  height: 300px;
+  padding: 20px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.msg-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+.msg-avatar-sm {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1.5px solid #0c576b;
+  background: #07131a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.msg-avatar-sm svg { width: 16px; height: 16px; }
+.bubble {
+  padding: 10px 14px;
+  border-radius: 18px;
+  font-size: 13.5px;
+  line-height: 1.5;
+  max-width: 75%;
+}
+.bubble-bot {
+  background: #0f2d38;
+  color: #c8e8f0;
+  border: 1px solid #0c576b33;
+  border-bottom-left-radius: 4px;
+}
+.bubble-user {
+  background: #af1724;
+  color: #fff;
+  border-bottom-right-radius: 4px;
+  margin-left: auto;
+}
+.msg-row-user { flex-direction: row-reverse; }
+
+.chat-footer {
+  padding: 12px 14px;
+  background: #0a1b22;
+  border-top: 1px solid #0c576b22;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.input-box {
+  flex: 1;
+  background: #07131a;
+  border: 1px solid #0c576b44;
+  border-radius: 24px;
+  padding: 10px 16px;
+  font-size: 13px;
+  color: #c8e8f0;
+  outline: none;
+}
+.input-box::placeholder { color: #3a6a7a; }
+.mic-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #0c576b;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background .2s;
+}
+.mic-btn:hover { background: #086374; }
+.mic-btn svg { width: 16px; height: 16px; fill: #fff; }
+
+.btn-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 560px;
+}
+.btn-secondary {
+  padding: 13px 20px;
+  border-radius: 10px;
+  border: 1.5px solid #0c576b;
+  background: transparent;
+  color: #4a9ab0;
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  letter-spacing: .3px;
+  transition: all .2s;
+  text-align: center;
+}
+.btn-secondary:hover {
+  background: #0c576b22;
+  color: #c8e8f0;
+  border-color: #0c576b88;
+}
+.btn-primary {
+  padding: 13px 20px;
+  border-radius: 10px;
+  border: none;
+  background: #af1724;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: .5px;
+  transition: background .2s;
+  text-align: center;
+}
+.btn-primary:hover { background: #8f121d; }
+</style>
+
+<div class="page">
+
+  <div class="logo-area">
+    <div class="logo-text">
+      <span class="t">IURI</span><span class="r">SI</span><span class="t">A</span>
+    </div>
+    <div class="logo-sub">Derecho Laboral &amp; Familiar</div>
+  </div>
+
+  <div class="chat-card">
+    <div class="chat-header">
+      <div class="avatar">
+        <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="14" cy="9" r="5" fill="#0c576b"/>
+          <rect x="7" y="16" width="14" height="8" rx="4" fill="#0c576b"/>
+          <circle cx="11" cy="8" r="1.2" fill="#af1724"/>
+          <circle cx="17" cy="8" r="1.2" fill="#af1724"/>
+        </svg>
+      </div>
+      <div class="header-info">
+        <div class="header-name">IURISIA</div>
+        <div class="header-sub">Pregúntame sobre Derecho Laboral y/o Familiar</div>
+      </div>
+      <div class="status-dot"></div>
+    </div>
+
+    <div class="chat-body">
+      <div class="msg-row">
+        <div class="msg-avatar-sm">
+          <svg viewBox="0 0 16 16" fill="none">
+            <circle cx="8" cy="5" r="3" fill="#0c576b"/>
+            <rect x="3" y="9" width="10" height="5" rx="2.5" fill="#0c576b"/>
+          </svg>
+        </div>
+        <div class="bubble bubble-bot">Hola, soy IURISIA. ¿En qué puedo ayudarte hoy con tu consulta jurídica?</div>
+      </div>
+      <div class="msg-row msg-row-user">
+        <div class="bubble bubble-user">¿Cuántos días de vacaciones me corresponden?</div>
+      </div>
+      <div class="msg-row">
+        <div class="msg-avatar-sm">
+          <svg viewBox="0 0 16 16" fill="none">
+            <circle cx="8" cy="5" r="3" fill="#0c576b"/>
+            <rect x="3" y="9" width="10" height="5" rx="2.5" fill="#0c576b"/>
+          </svg>
+        </div>
+        <div class="bubble bubble-bot">Según la ley, te corresponden al menos 15 días hábiles al año, incrementándose según tu antigüedad.</div>
+      </div>
+    </div>
+
+    <div class="chat-footer">
+      <input class="input-box" type="text" placeholder="Dime tu pregunta...">
+      <button class="mic-btn" aria-label="Micrófono">
+        <svg viewBox="0 0 24 24" fill="white"><path d="M12 1a4 4 0 0 1 4 4v6a4 4 0 0 1-8 0V5a4 4 0 0 1 4-4zm6.5 9a1 1 0 0 1 1 1 7.5 7.5 0 0 1-15 0 1 1 0 1 1 2 0 5.5 5.5 0 0 0 11 0 1 1 0 0 1 1-1z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn-secondary">¿Tu consulta jurídica no fue respondida?</button>
+    <button class="btn-primary">¡Califícame!</button>
+  </div>
+
+</div>

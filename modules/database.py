@@ -1,4 +1,3 @@
-# modules/database.py
 import os
 from pymongo import MongoClient
 from modules.modelo import generar_representacion
@@ -14,17 +13,20 @@ def conectar_mongodb():
     return coleccion
 
 def cargar_datos_mongodb(tokenizador, modelo):
-    """Carga los datos desde MongoDB y genera las representaciones de las preguntas."""
+    """Carga datos desde MongoDB y pre-calcula embeddings de preguntas."""
     coleccion = conectar_mongodb()
-    datos = list(coleccion.find({}))  # Cargar todos los documentos de la colección
-    # Para cada documento, genera las representaciones de las preguntas
+    datos = list(coleccion.find({}))
+
+    print(f"[INFO] Cargando {len(datos)} intentos desde MongoDB...")
+
     for intento in datos:
         intento["pregunta_representaciones"] = []
         for pregunta in intento["pregunta"]:
-            representacion = generar_representacion(pregunta, tokenizador, modelo)
-            intento["pregunta_representaciones"].append(representacion)
-    
-    return datos  # Asegúrate de retornar los datos
+            emb = generar_representacion(pregunta, tokenizador, modelo)
+            intento["pregunta_representaciones"].append(emb)
+
+    print("[INFO] Embeddings pre-calculados correctamente.")
+    return datos
 
 def cargar_calificaciones():
     coleccion_cal = base_datos["Calificaciones"]
